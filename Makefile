@@ -41,9 +41,12 @@ clean:
 	rm -f $(OBJS) $(SLIB) $(DLIB) musl-rpmatch.pc
 
 install: $(SLIB) $(DLIB)
-	install -D -m 755 $(DLIB) $(DESTDIR)$(LIBDIR)/$(DLIB)
-	install -D -m 644 $(SLIB) $(DESTDIR)$(LIBDIR)/$(SLIB)
+	install -d $(DESTDIR)$(LIBDIR)
+	install -m 755 $(DLIB) $(DESTDIR)$(LIBDIR)/$(DLIB)
+	install -m 644 $(SLIB) $(DESTDIR)$(LIBDIR)/$(SLIB)
 	ln -sf $(DLIB) $(DESTDIR)$(LIBDIR)/$(SONAME)
 	ln -sf $(DLIB) $(DESTDIR)$(LIBDIR)/$(SOBASE)
-	install -D -m 644 rpmatch.h $(DESTDIR)$(INCDIR)/rpmatch.h
-	install -D -m 644 musl-rpmatch.pc $(DESTDIR)$(LIBDIR)/pkgconfig/musl-rpmatch.pc
+	install -d $(DESTDIR)$(INCDIR)
+	install -m 644 rpmatch.h $(DESTDIR)$(INCDIR)/rpmatch.h
+	install -d $(DESTDIR)$(LIBDIR)/pkgconfig
+	install -m 644 musl-rpmatch.pc $(DESTDIR)$(LIBDIR)/pkgconfig/musl-rpmatch.pc
